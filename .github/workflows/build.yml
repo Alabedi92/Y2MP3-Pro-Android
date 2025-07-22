@@ -1,41 +1,22 @@
 # .github/workflows/build.yml
-# يعمل مع Briefcase v0.3.24+
 name: Build APK
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:   # تفعيل يدوي عند الحاجة
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. استخراج الكود
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # 2. تثبيت Python
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      # 3. تثبيت Briefcase
-      - name: Install Briefcase
-        run: pip install briefcase
-
-      # 4. إنشاء مشروع Android
-      - name: Create Android project
-        run: briefcase create android
-
-      # 5. بناء APK
-      - name: Build APK
-        run: briefcase build android
-
-      # 6. رفع APK كـ Artifact
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - run: pip install briefcase
+      - run: briefcase create android
+      - run: briefcase build android
+      - uses: actions/upload-artifact@v4
         with:
           name: Y2MP3-Pro-APK
           path: build/Y2MP3/android/app/build/outputs/apk/debug/*.apk
