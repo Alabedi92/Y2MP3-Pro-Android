@@ -1,33 +1,19 @@
 name: Build APK
-
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install Briefcase
-        run: pip install briefcase
-
-      - name: Create Android project
-        run: briefcase create android
-
-      - name: Build APK
-        run: briefcase build android
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install briefcase
+      - run: briefcase create android
+      - run: briefcase build android
+      - uses: actions/upload-artifact@v4
         with:
           name: Y2MP3-Pro-APK
           path: build/Y2MP3/android/app/build/outputs/apk/debug/*.apk
