@@ -9,6 +9,12 @@ description = "تحميل وتحويل الفيديوهات"
 author = "ALI ALBEDI"
 dependencies = ["yt-dlp", "requests", "toga-android~=0.5.0"]
 
+# القسم العام المطلوب
+[tool.briefcase]
+project_name = "Y2MP3"
+bundle = "com.drali.y2mp3pro"
+version = "1.0.0"
+
 [tool.briefcase.app.Y2MP3]
 formal_name = "Y2MP3-Pro"
 bundle = "com.drali.y2mp3pro"
