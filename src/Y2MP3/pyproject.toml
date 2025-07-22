@@ -6,15 +6,17 @@ build-backend = "briefcase"
 name = "Y2MP3"
 version = "1.0.0"
 description = "تحميل وتحويل الفيديوهات إلى MP3/MP4"
-dependencies = ["yt-dlp", "requests"]
+author = "ALI ALBEDI"
+author_email = "alabedy92@gmail.com"
+dependencies = ["yt-dlp", "requests", "toga-android~=0.5.0"]
 
 [tool.briefcase.app.Y2MP3]
 formal_name = "Y2MP3-Pro"
-bundle = "com.drali"
-author = "د. علي العابدي"
-description = "تطبيق أندرويد لتحميل الفيديوهات والصوتيات"
-sources = ["src/y2mp3pro"]
-requires = ["yt-dlp", "requests"]
+bundle = "com.drali.y2mp3pro"
+description = "تطبيق أندرويد لتحميل وتحويل الفيديوهات"
+sources = ["src/Y2MP3"]
 
 [tool.briefcase.app.Y2MP3.android]
-requires = ["yt-dlp", "requests"]
+requires = ["yt-dlp", "requests", "toga-android~=0.5.0"]
+base_theme = "Theme.MaterialComponents.Light.DarkActionBar"
+build_gradle_dependencies = ["com.google.android.material:material:1.12.0"]

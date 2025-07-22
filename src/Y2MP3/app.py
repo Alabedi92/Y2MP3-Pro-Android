@@ -8,20 +8,20 @@ DESIGNER = "د. علي العابدي"
 
 class Y2MP3Pro(toga.App):
     def startup(self):
-        self.main_box = toga.Box(style=Pack(direction=COLUMN, padding=20))
+        main_box = toga.Box(style=Pack(direction=COLUMN, padding=20))
         self.url_input = toga.TextInput(placeholder="ألصق الرابط")
         self.status = toga.Label("جاهز")
 
         mp3_btn = toga.Button("حوّل إلى MP3", on_press=self.download_mp3)
         mp4_btn = toga.Button("حمّل MP4", on_press=self.download_mp4)
 
-        self.main_box.add(self.url_input)
-        self.main_box.add(mp3_btn)
-        self.main_box.add(mp4_btn)
-        self.main_box.add(self.status)
+        main_box.add(self.url_input)
+        main_box.add(mp3_btn)
+        main_box.add(mp4_btn)
+        main_box.add(self.status)
 
         self.main_window = toga.MainWindow(title=APP_NAME)
-        self.main_window.content = self.main_box
+        self.main_window.content = main_box
         self.main_window.show()
 
     def download_mp3(self, widget):
@@ -38,14 +38,13 @@ class Y2MP3Pro(toga.App):
         threading.Thread(target=self._download, args=(url, mode)).start()
 
     def _download(self, url, mode):
-        storage = pathlib.Path.home() / "Downloads"
+        storage = pathlib.Path.home() / "Download"
         storage.mkdir(exist_ok=True)
         ydl_opts = {
             "outtmpl": str(storage / f"%(title)s.{mode}"),
             "format": "bestaudio/best" if mode == "mp3" else "bestvideo+bestaudio/best[height<=720]",
-            "ffmpeg_location": "C:\\ffmpeg",
             "postprocessors": [
-                {"key": "FFmpegExtractAudio", "preferredcodec": "mp3"}
+                {"key": "FFmpegExtractAudio", "preferredcodec": "mp3", "preferredquality": "320"}
             ] if mode == "mp3" else [],
         }
         try:
