@@ -1,0 +1,20 @@
+[build-system]
+requires = ["briefcase"]
+build-backend = "briefcase"
+
+[project]
+name = "Y2MP3"
+version = "1.0.0"
+description = "تحميل وتحويل الفيديوهات إلى MP3/MP4"
+dependencies = ["yt-dlp", "requests"]
+
+[tool.briefcase.app.Y2MP3]
+formal_name = "Y2MP3-Pro"
+bundle = "com.drali"
+author = "د. علي العابدي"
+description = "تطبيق أندرويد لتحميل الفيديوهات والصوتيات"
+sources = ["src/y2mp3pro"]
+requires = ["yt-dlp", "requests"]
+
+[tool.briefcase.app.Y2MP3.android]
+requires = ["yt-dlp", "requests"]
