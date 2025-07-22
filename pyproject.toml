@@ -7,21 +7,10 @@ name = "Y2MP3"
 version = "1.0.0"
 description = "تحميل وتحويل الفيديوهات"
 author = "ALI ALBEDI"
-dependencies = ["yt-dlp", "requests", "toga-android~=0.5.0"]
+dependencies = ["yt-dlp", "requests", "kivy~=2.3.0"]
 
-# قسم Briefcase العام (مرّة واحدة فقط)
-[tool.briefcase]
-project_name = "Y2MP3"
-bundle = "com.drali.y2mp3pro"
-version = "1.0.0"
-
-# تكوين التطبيق
 [tool.briefcase.app.Y2MP3]
 formal_name = "Y2MP3-Pro"
 bundle = "com.drali.y2mp3pro"
 description = "تطبيق أندرويد لتحميل وتحويل الفيديوهات"
 sources = ["src/Y2MP3"]
-license = "MIT"
-
-[tool.briefcase.app.Y2MP3.android]
-requires = ["yt-dlp", "requests", "toga-android~=0.5.0"]
